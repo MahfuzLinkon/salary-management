@@ -1,4 +1,7 @@
 @extends('master')
+@section('title')
+    Calculate salary 
+@endsection
 
 @section('content')
     <div class="row py-5">

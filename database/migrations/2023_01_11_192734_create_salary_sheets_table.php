@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bank_accounts', function (Blueprint $table) {
+        Schema::create('salary_sheets', function (Blueprint $table) {
             $table->id();
-            $table->string('account_name');
-            $table->tinyInteger('account_type')->comment('1=>Saving; 2=>Current;');
+            $table->bigInteger('employee_id');
+            $table->tinyInteger('rank');
             $table->integer('account_number');
-            $table->string('bank_name');
-            $table->string('branch_name');
-            $table->double('current_balance', 10, 2 )->default(0);
-            $table->tinyInteger('status')->default(1)->comment('1=>Active; 0=>Deactivate;');
+            $table->double('amount', 10, 2);
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bank_accounts');
+        Schema::dropIfExists('salary_sheets');
     }
 };

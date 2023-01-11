@@ -7,7 +7,7 @@
         <div class="col-md-12 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="float-start">Manage Account</h4>
+                    <h4 class="float-start">Manage Bank Account</h4>
                     <a href="{{ route('bank-accounts.create') }}" class="btn btn-primary float-end">Create</a>
                 </div>
                 <div class="card-body">
