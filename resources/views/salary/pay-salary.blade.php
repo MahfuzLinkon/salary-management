@@ -28,6 +28,12 @@
                             </div>
                         </div>
                         <div class="row mt-3">
+                            <label for="" class="col-md-3">Salary Amount</label>
+                            <div class="col-md-9">
+                              <input type="number" name="amount" id="amount" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
                             <label for="" class="col-md-3">Employee Name</label>
                             <div class="col-md-9">
                                 <select name="employee_id" id="employeeName" class="form-control">
@@ -40,12 +46,7 @@
                               <input type="number" name="account_number" id="accountNumber" class="form-control">
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <label for="" class="col-md-3">Salary Amount</label>
-                            <div class="col-md-9">
-                              <input type="number" name="amount" class="form-control">
-                            </div>
-                        </div>
+                        
                         <div class="row mt-3">
                             <label for="" class="col-md-3"></label>
                             <div class="col-md-9">
@@ -69,6 +70,7 @@
 
     $(document).on('change', '#rank', function(){
         let rank = $(this).val();
+        salaryAmount(rank)
         $.ajax({
             url: "/get-employee/rank-wish",
             type: "POST",
@@ -82,6 +84,7 @@
                     option += '<option value="'+value.id+'">'+value.name+'</option>';
                 });
                 $('#employeeName').empty().append(option);
+                
             }
         });
     });
@@ -99,6 +102,19 @@
             }
         });
     });
+
+    function salaryAmount(rank){
+        $.ajax({
+            url: "/get-salary/rank-wish",
+            type: "POST",
+            dataType: "JSON",
+            data: {rank: rank},
+            success: function(response){
+                console.log(response);
+                $('#amount').val(response.total);
+            }
+        });
+    }
 
 
 </script>

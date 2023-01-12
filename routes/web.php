@@ -24,3 +24,4 @@ Route::post('/company/add-balance', [CompanyAccountController::class, 'addBalanc
 Route::get('/pay/salary', [SalaryController::class, 'paySalary'])->name('pay.salary');
 Route::post('/get-employee/rank-wish', [SalaryController::class, 'getEmployee'])->name('employee.rank-wish');
 Route::post('/get-employee/account', [SalaryController::class, 'getEmployeeAccount'])->name('employee.account');
+Route::post('/get-salary/rank-wish', [SalaryController::class, 'getSalary'])->name('salary.rank-wish');

@@ -8,10 +8,47 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4>Salary</h4>
+                    <h4>Salary Scale</h4>
                 </div>
                 <div class="card-body">
-                   
+                   <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sl</th>
+                                <th>Rank</th>
+                                <th>Basic</th>
+                                <th>House Rent</th>
+                                <th>Medical allowance</th>
+                                <th>Total Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($salaryScales as $salaryScale)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    @if ($salaryScale->rank ==1)
+                                        First
+                                    @elseif ($salaryScale->rank ==2)
+                                        Second
+                                    @elseif ($salaryScale->rank ==3)
+                                        Third
+                                    @elseif ($salaryScale->rank ==4)
+                                        Fourth
+                                    @elseif ($salaryScale->rank ==5)
+                                        Fifth
+                                    @elseif ($salaryScale->rank ==6)
+                                        Sixth
+                                    @endif
+                                </td>
+                                <td>{{ $salaryScale->basic }}</td>
+                                <td>{{ $salaryScale->house_rent }}</td>
+                                <td>{{ $salaryScale->medical_allowance }}</td>
+                                <td>{{ $salaryScale->total }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                   </table>
                 </div>
             </div>
         </div>
@@ -25,26 +62,13 @@
                     <form action="{{ route('calculate.salary.result') }}" method="POST">
                         @csrf
                         <div>
-                            <label for="form-label">Low Basic salary</label>
+                            <label for="form-label">Lowest grade basic salary</label>
                             <input type="number" name="low_basic_salary" class="form-control">
-                        </div>
-                        <div class="mt-3">
-                            <label for="form-label">Employees Ranks</label>
-                            <select name="ranks" id="" class="form-control">
-                                <option selected disabled>--Select Empolyee Ranks--</option>
-                                <option value="1">1st</option>
-                                <option value="2">2nd</option>
-                                <option value="3">3rd </option>
-                                <option value="4">4th </option>
-                                <option value="5">5th </option>
-                                <option value="6">6th </option>
-                            </select>
-                        </div>
-
-                        <div class="mt-3">
-                            <label for="form-label">Total Salary</label>
-                            <input type="number" value="{{ Session::get('result') }}" disabled class="form-control">
-                            {{-- <p>Total Salary: {{ Session::get('result') }}</p> --}}
+                            <div>
+                                @error('low_basic_salary')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="mt-3">   
                             <input type="submit" value="Calculate" class="btn btn-success form-control">

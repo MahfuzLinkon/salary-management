@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\SalaryScale;
 use Illuminate\Http\Request;
 
 class SalaryController extends Controller
@@ -23,6 +24,12 @@ class SalaryController extends Controller
         $employeeId = $request->employee_id;
         $account = Employee::where('id', $employeeId)->first();
         return response()->json($account);
+    }
+
+    public function getSalary(Request $request){
+        $rank = $request->rank;
+        $salary = SalaryScale::where('rank', $rank)->first();
+        return response()->json($salary);
     }
 
 

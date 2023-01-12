@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SalaryScale;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -12,7 +13,9 @@ class FrontendController extends Controller
     }
 
     public function calculateSalary(){
-        return view('salary.calculate-salary');
+        return view('salary.calculate-salary', [
+            'salaryScales' => SalaryScale::orderBy('rank', 'ASC')->get(),
+        ]);
     }
 
     
