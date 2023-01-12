@@ -10,16 +10,16 @@
         <div class="col-md-4 ">
             <div class="card text-white bg-primary">
                 <div class="card-body">
-                    <h5 class="card-title">Remaining Balance</h5>
-                    <h5 class="card-title">{{ isset($mainAccount->balance)  ? $mainAccount->balance : "Enter initial balance"  }} <span>BDT</span></h5>
+                    <h3 class="card-title">Remaining Balance</h3>
+                    <h5 class="card-title">{{ isset($mainAccount->balance)  ? $mainAccount->balance . ' TK' : "Enter initial balance"  }} </h5>
                 </div>
             </div>
         </div>
         <div class="col-md-4 ">
             <div class="card text-white bg-success">
                 <div class="card-body">
-                    <h5 class="card-title">Total Paid Salary</h5>
-                    <h5 class="card-title"> <span>BDT</span></h5>
+                    <h3 class="card-title">Total Paid Salary</h3>
+                    <h5 class="card-title"> <span>TK</span></h5>
                 </div>
             </div>
         </div>

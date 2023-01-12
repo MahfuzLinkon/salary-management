@@ -19,7 +19,6 @@
                                 <th>Name</th>
                                 <th>Rank</th>
                                 <th>Mobile</th>
-                                <th>Bank Account</th>
                                 <th>Address</th>
                                 <th>Action</th>
                             </tr>
@@ -45,7 +44,6 @@
                                     @endif
                                 </td>
                                 <td>{{ $employee->mobile }}</td>
-                                <td>{{ $employee->bank_account }}</td>
                                 <td>{{ $employee->address }}</td>
                                 <td>
                                     <a href="{{ route('employees.edit', $employee->id) }}"  class="btn btn-primary">Edit</a>
