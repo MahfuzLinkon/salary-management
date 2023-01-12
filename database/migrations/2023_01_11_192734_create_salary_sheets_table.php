@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('employee_id');
             $table->tinyInteger('rank');
-            $table->integer('account_number');
+            $table->text('account_number');
             $table->double('amount', 10, 2);
             $table->timestamps();
         });

@@ -25,3 +25,6 @@ Route::get('/pay/salary', [SalaryController::class, 'paySalary'])->name('pay.sal
 Route::post('/get-employee/rank-wish', [SalaryController::class, 'getEmployee'])->name('employee.rank-wish');
 Route::post('/get-employee/account', [SalaryController::class, 'getEmployeeAccount'])->name('employee.account');
 Route::post('/get-salary/rank-wish', [SalaryController::class, 'getSalary'])->name('salary.rank-wish');
+Route::post('/transfer/salary', [SalaryController::class, 'transferSalary'])->name('transfer.salary');
+Route::get('/salary/sheet', [SalaryController::class, 'salarySheet'])->name('salary.sheet');
+

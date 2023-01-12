@@ -16,7 +16,7 @@ class EmployeeController extends Controller
     public function index()
     {
         return view('employee.index', [
-            'employees' => Employee::orderBy('name', 'ASC')->get(),
+            'employees' => Employee::orderBy('rank', 'ASC')->get(),
         ]);
     }
 

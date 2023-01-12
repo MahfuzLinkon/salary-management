@@ -11,7 +11,8 @@
                     <h4>Pay Salary</h4>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST" onsubmit="return confirm('Are sure want to pay salary ?')">
+                    <p class="text-center text-info">{{ Session::get('success') }}</p>
+                    <form action="{{ route('transfer.salary') }}" method="POST" onsubmit="return confirm('Are sure want to pay salary ?')">
                         @csrf
                         <div class="row">
                             <label for="" class="col-md-3">Employee Rank</label>
@@ -25,25 +26,45 @@
                                     <option value="5">Fifth</option>
                                     <option value="6">Sixth</option>
                                 </select>
+                                <div class="mt-2">
+                                    @error('rank')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <label for="" class="col-md-3">Salary Amount</label>
                             <div class="col-md-9">
                               <input type="number" name="amount" id="amount" class="form-control">
+                              <div class="mt-2">
+                                @error('amount')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                              </div>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <label for="" class="col-md-3">Employee Name</label>
                             <div class="col-md-9">
-                                <select name="employee_id" id="employeeName" class="form-control">
+                                <select name="employee_id" id="employeeId" class="form-control">
                                 </select>
+                                <div class="mt-2">
+                                    @error('employee_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <label for="" class="col-md-3">Account Number</label>
                             <div class="col-md-9">
-                              <input type="number" name="account_number" id="accountNumber" class="form-control">
+                              <input type="text" name="account_number" id="accountNumber" class="form-control">
+                              <div class="mt-2">
+                                @error('account_number')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                             </div>
                         </div>
                         
@@ -68,6 +89,7 @@
         }
     });
 
+    // Get empoyee name
     $(document).on('change', '#rank', function(){
         let rank = $(this).val();
         salaryAmount(rank)
@@ -83,14 +105,16 @@
                 $.each(response, function (key, value){
                     option += '<option value="'+value.id+'">'+value.name+'</option>';
                 });
-                $('#employeeName').empty().append(option);
+                $('#employeeId').empty().append(option);
                 
             }
         });
     });
 
-    $(document).on('change', '#employeeName', function(){
+    // Get Account Number 
+    $(document).on('change', '#employeeId', function(){
         let employeeId = $(this).val();
+        // alert(employeeId);
         $.ajax({
             url: "/get-employee/account",
             type: "POST",
@@ -98,11 +122,12 @@
             data: {employee_id: employeeId},
             success: function(response){
                 console.log(response);
-                $('#accountNumber').val(response.bank_account);
+                $('#accountNumber').val(response.account_number);
             }
         });
     });
 
+    // Rank wise salary
     function salaryAmount(rank){
         $.ajax({
             url: "/get-salary/rank-wish",

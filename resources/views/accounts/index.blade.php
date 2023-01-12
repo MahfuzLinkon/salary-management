@@ -19,7 +19,7 @@
             <div class="card text-white bg-success">
                 <div class="card-body">
                     <h3 class="card-title">Total Paid Salary</h3>
-                    <h5 class="card-title"> <span>TK</span></h5>
+                    <h5 class="card-title">{{ $totalPaidSalary }}<span> TK</span></h5>
                 </div>
             </div>
         </div>

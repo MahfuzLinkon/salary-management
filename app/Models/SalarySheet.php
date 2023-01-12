@@ -8,4 +8,50 @@ use Illuminate\Database\Eloquent\Model;
 class SalarySheet extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'rank',
+        'amount',
+        'employee_id',
+        'account_number',
+    ];
+
+    public static function transferSalaryCreate($request){
+        $mainAccount = MainBankAccount::first();
+        if($mainAccount->balance >= $request->amount){
+            SalarySheet::create([
+                'rank' => $request->rank,
+                'amount' => $request->amount,
+                'employee_id' => $request->employee_id,
+                'account_number' => $request->account_number,
+            ]);
+            $mainAccount->balance = $mainAccount->balance - $request->amount;
+            $mainAccount->save();
+
+            $employeeAccount = BankAccount::find($request->employee_id);
+            $employeeAccount->current_balance = $employeeAccount->current_balance + $request->amount;
+            $employeeAccount->save();
+
+            $message = 'Salary paid successfully';
+            return $message;
+        }else{
+            $message = 'Insufficient balance in main account';
+            return $message;
+        }
+    }
+
+
+
+
+    public function employee(){
+        return $this->belongsTo(Employee::class);
+    }
+
+
+
+
+
+
+
+
 }

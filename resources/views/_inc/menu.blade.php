@@ -9,7 +9,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('calculate.salary') }}" class="dropdown-item">Selary Scale</a></li>
                     <li><a href="{{ route('pay.salary') }}" class="dropdown-item">Pay Selary</a></li>
-                    <li><a href="" class="dropdown-item">Selary Sheet</a></li>
+                    <li><a href="{{ route('salary.sheet') }}" class="dropdown-item">Selary Sheet</a></li>
                 </ul>
             </li>
             <li class="dropdown">

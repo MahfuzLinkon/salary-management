@@ -17,7 +17,7 @@ class BankController extends Controller
     public function index()
     {
         return view('bank.index', [
-            'accounts' => BankAccount::orderBy('id', 'ASC')->get(),
+            'accounts' => BankAccount::orderBy('account_number', 'ASC')->get(),
         ]);
     }
 
@@ -42,7 +42,7 @@ class BankController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'employee_id' => 'required',
+            'employee_id' => 'required|unique:bank_accounts',
             'account_type' => 'required',
             'account_number' => 'required|unique:bank_accounts',
             'bank_name' => 'required',
@@ -86,7 +86,10 @@ class BankController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'account_name' => 'required',
+            'employee_id' => [
+                'required',
+                Rule::unique('bank_accounts')->ignore($id),
+            ],
             'account_type' => 'required',
             'account_number' => [
                 'required',
