@@ -11,7 +11,6 @@
                     <h4>Pay Salary</h4>
                 </div>
                 <div class="card-body">
-                    <p class="text-center text-info">{{ Session::get('success') }}</p>
                     <form action="{{ route('transfer.salary') }}" method="POST" onsubmit="return confirm('Are sure want to pay salary ?')">
                         @csrf
                         <div class="row">

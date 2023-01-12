@@ -27,7 +27,6 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Add Balance</h5>
-                    <p class="text-center text-info">{{ Session::get('success') }}</p>
                     <form action="{{ route('company-add.balance') }}" method="POST">
                         @csrf
                         <div>

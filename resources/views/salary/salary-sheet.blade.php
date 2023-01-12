@@ -42,7 +42,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $salary->amount }}</td>
-                                <td>{{ $salary->created_at }}</td>
+                                <td>{{ $salary->created_at->format('M d Y') }}</td>
                             </tr>
                             @empty
                             <p class="text-info text-center">No salary is paid yet. </p>

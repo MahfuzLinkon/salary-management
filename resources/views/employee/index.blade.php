@@ -11,7 +11,6 @@
                     <a href="{{ route('employees.create') }}" class="btn btn-primary float-end">Create</a>
                 </div>
                 <div class="card-body">
-                    <p class="text-center text-info">{{ Session::get('success') }}</p>
                     <table class="table table-bordered">
                         <thead>
                             <tr>

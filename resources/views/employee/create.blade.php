@@ -11,7 +11,6 @@
                     <a href="{{ route('employees.index') }}" class="btn btn-primary float-end">Manage</a>
                 </div>
                 <div class="card-body">
-                    <p class="text-center text-info">{{ Session::get('success') }}</p>
                     <form action="{{ route('employees.store') }}" method="POST">
                         @csrf
                         <div class="row">

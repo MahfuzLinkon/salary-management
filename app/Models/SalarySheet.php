@@ -32,10 +32,16 @@ class SalarySheet extends Model
             $employeeAccount->current_balance = $employeeAccount->current_balance + $request->amount;
             $employeeAccount->save();
 
-            $message = 'Salary paid successfully';
+            $message = [
+                'type' => 'success' ,
+                'message' => 'Salary paid successfully',
+            ];
             return $message;
         }else{
-            $message = 'Insufficient balance in main account';
+            $message = [
+                'type' => 'error' ,
+                'message' => 'Insufficient balance in main account',
+            ];
             return $message;
         }
     }

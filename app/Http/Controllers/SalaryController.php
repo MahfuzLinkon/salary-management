@@ -48,7 +48,7 @@ class SalaryController extends Controller
         ]);
 
         $message = SalarySheet::transferSalaryCreate($request);
-        return redirect()->back()->with('success', $message);
+        return redirect()->back()->with($message['type'], $message['message']);
     }
 
     public function salarySheet(){
