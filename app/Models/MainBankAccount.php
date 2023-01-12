@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class MainBankAccount extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'current_balance',
+        'balance',
     ];
+
+    public static function mainBankUpdateOrCreate($request, $id = 1){
+        
+        MainBankAccount::updateOrCreate(['id' => $id], [
+            'balance' => isset(MainBankAccount::first()->id) ? MainBankAccount::find($id)->balance + $request->balance : $request->balance,
+        ]);
+    }
 }

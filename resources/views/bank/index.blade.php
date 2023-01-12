@@ -29,8 +29,8 @@
                             @foreach ($accounts as $account)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $account->account_name }}</td>
-                                <td>{{ $account->account_name == 1 ? 'Savings' : 'Current' }}</td>
+                                <td>{{ $account->employee->name }}</td>
+                                <td>{{ $account->account_type == 1 ? 'Savings' : 'Current' }}</td>
                                 <td>{{ $account->account_number }}</td>
                                 <td>{{ $account->bank_name }}</td>
                                 <td>{{ $account->branch_name }}</td>

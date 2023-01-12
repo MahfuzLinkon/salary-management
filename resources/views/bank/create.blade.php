@@ -18,9 +18,15 @@
                             <div class="col-md-6">
                                 <div>
                                     <label for="" class="form-label">Account Name</label>
-                                    <input type="text" name="account_name" class="form-control">
+                                    <select name="employee_id" id="" class="form-control">
+                                        <option selected disabled>-Select Employee-</option>
+                                        @foreach ($employees as $employee)
+                                        <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                        @endforeach
+                                    </select>
+
                                     <div class="mt-2">
-                                        @error('account_name')
+                                        @error('employee_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

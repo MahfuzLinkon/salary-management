@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BankAccount;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -16,7 +17,7 @@ class BankController extends Controller
     public function index()
     {
         return view('bank.index', [
-            'accounts' => BankAccount::orderBy('account_name', 'ASC')->get(),
+            'accounts' => BankAccount::orderBy('id', 'ASC')->get(),
         ]);
     }
 
@@ -27,7 +28,9 @@ class BankController extends Controller
      */
     public function create()
     {
-        return view('bank.create');
+        return view('bank.create', [
+            'employees' => Employee::orderBy('name', 'ASC')->get(),
+        ]);
     }
 
     /**
@@ -39,7 +42,7 @@ class BankController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'account_name' => 'required',
+            'employee_id' => 'required',
             'account_type' => 'required',
             'account_number' => 'required|unique:bank_accounts',
             'bank_name' => 'required',

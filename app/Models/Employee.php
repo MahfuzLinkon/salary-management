@@ -13,7 +13,6 @@ class Employee extends Model
         'rank',
         'address',
         'mobile',
-        'bank_account',
     ];
 
     public static function employeeUpdateOrCreate($request, $id = null){
@@ -22,7 +21,6 @@ class Employee extends Model
             'rank' => $request->rank,
             'address' => $request->address,
             'mobile' => $request->mobile,
-            'bank_account' => $request->bank_account,
         ]);
     }
 }

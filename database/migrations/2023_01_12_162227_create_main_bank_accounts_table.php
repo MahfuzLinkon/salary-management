@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('main_bank_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->tinyInteger('rank')->comment('Rank is between 1-6');
-            $table->text('address');
-            $table->string('mobile');
-            $table->tinyInteger('status')->default(1)->comment('1=>active; 0=>Deactivate');
+            $table->double('balance', 10, 2)->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('main_bank_accounts');
     }
 };

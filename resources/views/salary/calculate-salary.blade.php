@@ -23,7 +23,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($salaryScales as $salaryScale)
+                            @forelse ($salaryScales as $salaryScale)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
@@ -46,7 +46,9 @@
                                 <td>{{ $salaryScale->medical_allowance }}</td>
                                 <td>{{ $salaryScale->total }}</td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <p class="text-info text-center">Please inter initial basic salary.</p>
+                            @endforelse
                         </tbody>
                    </table>
                 </div>
@@ -62,7 +64,7 @@
                     <form action="{{ route('calculate.salary.result') }}" method="POST">
                         @csrf
                         <div>
-                            <label for="form-label">Lowest grade basic salary</label>
+                            <label for="form-label">Initial basic salary</label>
                             <input type="number" name="low_basic_salary" class="form-control">
                             <div>
                                 @error('low_basic_salary')

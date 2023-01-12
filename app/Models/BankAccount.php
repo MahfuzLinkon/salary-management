@@ -9,7 +9,7 @@ class BankAccount extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'account_name',
+        'employee_id',
         'account_type',
         'account_number',
         'bank_name',
@@ -19,16 +19,17 @@ class BankAccount extends Model
 
     public static function bankAccountUpdateOrCreate($request, $id =null){
         BankAccount::updateOrCreate(['id'=> $id], [
-            'account_name' => $request->account_name,
+            'employee_id' => $request->employee_id,
             'account_type' => $request->account_type,
             'account_number' => $request->account_number,
             'bank_name' => $request->bank_name,
             'branch_name' => $request->branch_name,
         ]);
-
-
     }
 
+    public function employee(){
+        return $this->belongsTo(Employee::class);
+    }
 
 
 

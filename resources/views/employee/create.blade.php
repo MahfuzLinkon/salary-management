@@ -59,21 +59,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div>
-                                    <label for="" class="form-label">Bank Account</label>
-                                    <input type="text" name="bank_account" class="form-control">
-                                    <div class="mt-2">
-                                        @error('bank_account')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12">
                                 <label for="">Address</label>
-                                <textarea name="address" id="" cols="30" rows="3" class="form-control"></textarea>
+                                <textarea name="address" id="" cols="30" rows="2" class="form-control"></textarea>
                                 <div class="mt-2">
                                     @error('address')
                                         <span class="text-danger">{{ $message }}</span>
@@ -81,6 +68,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="mt-3">
                             <input type="submit" class="float-end btn btn-success">
                         </div>

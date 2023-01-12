@@ -43,7 +43,6 @@ class EmployeeController extends Controller
             'rank' => 'required',
             'address' => 'required',
             'mobile' => 'required',
-            'bank_account' => 'required|unique:employees',
         ]);
         Employee::employeeUpdateOrCreate($request);
         return redirect()->back()->with('success', 'Employee Added Successfully');
@@ -87,10 +86,6 @@ class EmployeeController extends Controller
             'rank' => 'required',
             'address' => 'required',
             'mobile' => 'required',
-            'bank_account' => [
-                'required',
-                Rule::unique('employees')->ignore($id),
-            ],
         ]);
         Employee::employeeUpdateOrCreate($request, $id);
         return redirect()->route('employees.index')->with('success', 'Employee Updated Successfully');

@@ -11,7 +11,7 @@
             <div class="card text-white bg-primary">
                 <div class="card-body">
                     <h5 class="card-title">Remaining Balance</h5>
-                    <h5 class="card-title">{{ $balance->current_balance }} <span>BDT</span></h5>
+                    <h5 class="card-title">{{ isset($mainAccount->balance)  ? $mainAccount->balance : "Enter initial balance"  }} <span>BDT</span></h5>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                         @csrf
                         <div>
                             <label for="" class="form-label">Enter Amount</label>
-                            <input type="number" name="add_balance" class="form-control">
+                            <input type="number" name="balance" class="form-control">
                         </div>
                         <div class="mt-3">
                             <input type="submit" class="form-control btn btn-success" value="Submit">

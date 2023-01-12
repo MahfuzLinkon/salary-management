@@ -2,9 +2,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BankController;
-use App\Http\Controllers\CompanyAccountController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\MainBankController;
 use App\Http\Controllers\SalaryCalculateController;
 use App\Http\Controllers\SalaryController;
 
@@ -16,9 +16,9 @@ Route::post('/calculate/salary/result', [SalaryCalculateController::class, 'calc
 Route::resource('bank-accounts', BankController::class);
 Route::resource('employees', EmployeeController::class);
 
-// Company Accounts All Route
-Route::get('/company/account', [CompanyAccountController::class, 'index'])->name('company-account.index');
-Route::post('/company/add-balance', [CompanyAccountController::class, 'addBalance'])->name('company-add.balance');
+// Company Main Accounts All Route
+Route::get('/company/account', [MainBankController::class, 'index'])->name('company-account.index');
+Route::post('/company/add-balance', [MainBankController::class, 'addBalance'])->name('company-add.balance');
 
 // Pay Salary Route 
 Route::get('/pay/salary', [SalaryController::class, 'paySalary'])->name('pay.salary');

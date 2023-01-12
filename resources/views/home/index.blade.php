@@ -1,5 +1,7 @@
 @extends('master')
 
 @section('content')
-    <h1>Hello index</h1>
+    <div class="py-5">
+        <h4 class="text-center text-info">Salary Managemet </h4>
+    </div>
 @endsection
