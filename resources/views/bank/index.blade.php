@@ -21,6 +21,7 @@
                                 <th>Bank Name</th>
                                 <th>Branch Name</th>
                                 <th>Current Balance</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -34,13 +35,14 @@
                                 <td>{{ $account->bank_name }}</td>
                                 <td>{{ $account->branch_name }}</td>
                                 <td>{{ $account->current_balance }}</td>
+                                <td>{{ $account->status == 1 ? 'Activated' : 'Deactivated' }}</td>
                                 <td>
-                                    <a href="{{ route('bank-accounts.edit', $account->id) }}"  class="btn btn-primary">Edit</a>
-
+                                    <a href="{{ route('bank-accounts.change-status', ['id' => $account->id]) }}"  class="btn btn-{{ $account->status == 1 ? 'warning' : 'success' }}"><i class="fa-solid fa-arrow-{{ $account->status == 1 ? 'down' : 'up' }}"></i></a>
+                                    <a href="{{ route('bank-accounts.edit', $account->id) }}"  class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></a>
                                     <form action="{{ route('bank-accounts.destroy',$account->id) }}" method="POST" style="display: inline-block" onsubmit="return confirm('Are You sure ?')">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>

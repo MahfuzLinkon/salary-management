@@ -105,4 +105,20 @@ class EmployeeController extends Controller
         Employee::find($id)->delete();
         return redirect()->route('employees.index')->with('success', 'Employee Deleted Successfully');
     }
+
+    public function changeStatus($id){
+        $employee = Employee::find($id);
+        if($employee->status == 1){
+            $employee->status = 0 ;
+            $message = 'Employee status deactivated';
+        }elseif($employee->status == 0){
+            $employee->status = 1 ;
+            $message = 'Employee status activated';
+        }
+        $employee->save();
+        return redirect()->back()->with('success', $message);
+    }
+
+
+
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('employee_id');
             $table->tinyInteger('account_type')->comment('1=>Saving; 2=>Current;');
-            $table->integer('account_number');
+            $table->text('account_number');
             $table->string('bank_name');
             $table->string('branch_name');
             $table->double('current_balance', 10, 2 )->default(0);

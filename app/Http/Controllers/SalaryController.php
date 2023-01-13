@@ -18,7 +18,7 @@ class SalaryController extends Controller
 
     public function getEmployee(Request $request){
         $rank = $request->rank;
-        $employees = Employee::where('rank', $rank)->get();
+        $employees = Employee::where('rank', $rank)->where('status', 1)->get();
         return response()->json($employees);
     }
 
@@ -46,7 +46,7 @@ class SalaryController extends Controller
             'employee_id.required' => 'Employee name is required',
             'account_number.required' => 'Account number is required',
         ]);
-
+        // return $request->all();
         $message = SalarySheet::transferSalaryCreate($request);
         return redirect()->back()->with($message['type'], $message['message']);
     }

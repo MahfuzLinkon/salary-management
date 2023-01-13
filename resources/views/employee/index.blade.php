@@ -19,6 +19,7 @@
                                 <th>Rank</th>
                                 <th>Mobile</th>
                                 <th>Address</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -44,13 +45,14 @@
                                 </td>
                                 <td>{{ $employee->mobile }}</td>
                                 <td>{{ $employee->address }}</td>
+                                <td>{{ $employee->status == 1 ? 'Activated' : 'Deactivated' }}</td>
                                 <td>
-                                    <a href="{{ route('employees.edit', $employee->id) }}"  class="btn btn-primary">Edit</a>
-
+                                    <a href="{{ route('employees.change-status', ['id' => $employee->id]) }}"  class="btn btn-{{ $employee->status == 1 ? 'warning' : 'success' }}"><i class="fa-solid fa-arrow-{{ $employee->status == 1 ? 'down' : 'up' }}"></i></a>
+                                    <a href="{{ route('employees.edit', $employee->id) }}"  class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></a>
                                     <form action="{{ route('employees.destroy',$employee->id) }}" method="POST" style="display: inline-block" onsubmit="return confirm('Are You sure ?')">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>

@@ -47,6 +47,9 @@ class BankController extends Controller
             'account_number' => 'required|unique:bank_accounts',
             'bank_name' => 'required',
             'branch_name' => 'required',
+        ],[
+            'employee_id.required' => 'Employee Name is required',
+            'employee_id.unique' => 'Employee Account Already Created',
         ]);
         BankAccount::bankAccountUpdateOrCreate($request);
         return redirect()->back()->with('success', 'Account Created Successfully');
@@ -73,6 +76,7 @@ class BankController extends Controller
     {
         return view('bank.edit', [
             'account' => BankAccount::where('id',$id)->first(),
+            'employees' => Employee::orderBy('name', 'ASC')->get(),
         ]);
     }
 
@@ -97,6 +101,9 @@ class BankController extends Controller
             ],
             'bank_name' => 'required',
             'branch_name' => 'required',
+        ],[
+            'employee_id.required' => 'Employee Name is required',
+            'employee_id.unique' => 'Employee Account Already Created',
         ]);
 
         BankAccount::bankAccountUpdateOrCreate($request, $id);
@@ -114,4 +121,19 @@ class BankController extends Controller
         BankAccount::find($id)->delete();
         return redirect()->route('bank-accounts.index')->with('success', 'Account Deleted Successfully');
     }
+
+    public function changeStatus($id){
+        $bankAccount = BankAccount::find($id);
+        if($bankAccount->status == 1){
+            $bankAccount->status = 0 ;
+            $message = 'Account status deactivated';
+        }elseif($bankAccount->status == 0){
+            $bankAccount->status = 1 ;
+            $message = 'Account status activated';
+        }
+        $bankAccount->save();
+        return redirect()->back()->with('success', $message);
+    }
+
+
 }
